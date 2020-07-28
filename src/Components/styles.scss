@@ -1,0 +1,56 @@
+.add{
+    display: flex;
+    justify-content: center;
+    .wrapper{
+        width: 350px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #FF9E72;
+        border-radius: 10px;
+    }
+    &__form{
+        width: 200px;
+        display: flex;
+        flex-wrap: wrap;
+        .error{
+            border: 2px solid red;
+        }
+        input,textarea{
+            display: flex;
+            flex-basis: 100%;
+            justify-content: space-between;
+            height: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.116);
+            background: #E9EFF8;
+            margin-bottom: 30px;
+            padding-left: 10px;
+            outline: none;
+            &:last-child {
+                display: flex;
+                justify-content: center;
+                background-color: #FF9E72;
+                border: 1px solid #F57E5A;
+                border-bottom: 3px solid #F57E5A;
+                color: #fff;
+                font-size: 15px;
+                margin-bottom: 0;
+            }
+        }
+        textarea{
+            height: 50px;
+            padding: 5px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 576px){
+    .add{
+        .wrapper{
+            width: 300px;
+        }
+    }
+}
