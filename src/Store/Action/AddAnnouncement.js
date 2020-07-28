@@ -36,9 +36,9 @@ import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,
                 let yy = getDate.getFullYear();
                 let date = dd + '.' + mm + '.' + yy;
                 let statement = {};
-                statement["Title"] = title;
-                statement["Description"] = description;
-                statement["Date"] = date;
+                statement["title"] = title;
+                statement["description"] = description;
+                statement["date"] = date;
                 announcements.push(statement);
                 dispatch(reFresh(announcements));
                 dispatch(clearForm());
