@@ -6,7 +6,7 @@ export default function ChooseAnnouncement() {
     let {state} = useLocation();
   return (
         <Announcement 
-            announcement={[state.announcement]}
+            announcement={state.announcement}
         />
   );
 }

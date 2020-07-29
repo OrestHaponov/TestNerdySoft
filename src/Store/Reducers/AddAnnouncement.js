@@ -1,10 +1,11 @@
-import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,CLEAR_FORM,TITLE_ERROR,REMOVE_TITLE_BORDER,REMOVE_DESCRIPTION_BORDER} from "../Action/ActionTypes";
+import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,CLEAR_FORM,TITLE_ERROR,REMOVE_TITLE_BORDER,REMOVE_DESCRIPTION_BORDER,OPEN_FORM} from "../Action/ActionTypes";
 
 const initialState ={
     valueTitle: "",
     valueDescription: "",
     titleError: false,
     descriptionError: false,
+    openForm: false,
 }
 
 export default function addAnnouncement(state = initialState, action){
@@ -17,6 +18,11 @@ export default function addAnnouncement(state = initialState, action){
             case CHANGE_DESCRIPTION:
                 return{
                     ...state, valueDescription: action.valueDescription.target.value
+                }
+        // OPEN FORM
+            case OPEN_FORM:
+                return{
+                    ...state, openForm: !state.openForm
                 }
             // ADD ANNOUNCEMENTS LOGIG
             case CLEAR_FORM:

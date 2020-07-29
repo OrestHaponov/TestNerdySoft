@@ -1,9 +1,8 @@
 import React from "react";
 import "./app.scss";
 import "../Components/styles.scss";
-import AddAnnouncement  from "../Components/AddAnnouncementForm/AddAnnouncement";
-import AnnouncementCards from "../Components/Announcements/AnnouncementCards";
 import Routes from "../Routes";
+import Header from "../Components/Header/Header"
 
 class App extends React.Component {
     constructor(props){
@@ -12,7 +11,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <AddAnnouncement  />
+                <Header />
                 <Routes />
             </div>
         );

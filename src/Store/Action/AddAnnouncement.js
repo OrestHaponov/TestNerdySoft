@@ -1,4 +1,4 @@
-import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,CLEAR_FORM,TITLE_ERROR,REMOVE_TITLE_BORDER,REMOVE_DESCRIPTION_BORDER} from "./ActionTypes";
+import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,CLEAR_FORM,TITLE_ERROR,REMOVE_TITLE_BORDER,REMOVE_DESCRIPTION_BORDER,OPEN_FORM} from "./ActionTypes";
 
 // GET CONTROL INPUTS
     export function changeTitle(valueTitle){
@@ -12,6 +12,14 @@ import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,
         return{
             type: CHANGE_DESCRIPTION,
             valueDescription
+        }
+    }
+
+    //OPEN FORM
+
+    export function openForm(){
+        return{
+            type: OPEN_FORM
         }
     }
 
@@ -39,6 +47,7 @@ import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,
                 statement["title"] = title;
                 statement["description"] = description;
                 statement["date"] = date;
+                statement["id"] = Math.floor(Math.random() * 1000) + 1;
                 announcements.push(statement);
                 dispatch(reFresh(announcements));
                 dispatch(clearForm());

@@ -1,20 +1,17 @@
 import React from 'react';
-import AnnouncementCard from "./AnnouncementCard";
+import AnnouncementCard from "../Announcements/AnnouncementCard";
 import {useSelector} from "react-redux";
 
-export default function AnnouncementCards(){
-    const announcementsH = useSelector(state => state.Announcements.announcements);
+export default function SearchResult(){
+    const searchResultH = useSelector(state => state.Search.searchResult);
     return(
         <div className="announcement-cards">
             <div className="wrapper">
-                {announcementsH.length === 0 ?
-                    <h1>No announcements yet</h1>
+                {searchResultH.length === 0 ?
+                    <h1>Oops nothing found</h1>
                     :
-                    // <AnnouncementCard 
-                    //     announcements={announcementsH}
-                    // />
                     <React.Fragment>
-                        {announcementsH.map((value,index)=>{
+                        {searchResultH.map((value,index)=>{
                             return(
                                 <AnnouncementCard 
                                     key={index}
