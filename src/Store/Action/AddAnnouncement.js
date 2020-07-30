@@ -1,4 +1,4 @@
-import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,CLEAR_FORM,TITLE_ERROR,REMOVE_TITLE_BORDER,REMOVE_DESCRIPTION_BORDER,OPEN_FORM} from "./ActionTypes";
+import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,CLEAR_FORM,TITLE_ERROR,REMOVE_TITLE_BORDER,REMOVE_DESCRIPTION_BORDER} from "./ActionTypes";
 
 // GET CONTROL INPUTS
     export function changeTitle(valueTitle){
@@ -15,18 +15,9 @@ import {CHANGE_TITLE,CHANGE_DESCRIPTION,DESCRIPTION_ERROR,REFRESH_ANNOUNCEMENTS,
         }
     }
 
-    //OPEN FORM
-
-    export function openForm(){
-        return{
-            type: OPEN_FORM
-        }
-    }
-
-    // ADD ANNOUNCEMENTS LOGIG
+// ADD ANNOUNCEMENTS LOGIG
     export function addAnnouncement(title,description,announcements){
         return(dispatch)=>{
-            // console.log(title,description,announcements);
             event.preventDefault();
             let add = true;
             if(title == "" || title == " "){

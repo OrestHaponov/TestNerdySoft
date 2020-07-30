@@ -1,3 +1,5 @@
+// HEADER
+
 .header{
     display: flex;
     align-items: center;
@@ -20,11 +22,30 @@
             margin-right: 20px;
         }
     }
+    .search-form{
+        input{
+            height: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.116);
+            background: #E9EFF8;
+        }
+        input[type=submit]{
+            height: 30px;
+            background-color: #FF9E72;
+            border: 1px solid #f57e5a;
+            border-bottom: 3px solid #F57E5A;
+            color: #fff;
+            margin-left: 15px;
+        }
+    }
 }
 
+
+// ADD ANNOUNCEMENT FORM
 .add{
     display: flex;
     justify-content: center;
+    width: 100%;
     .wrapper{
         width: 350px;
         height: 300px;
@@ -70,23 +91,32 @@
     }
 }
 
+
+// ANNOUNCEMENT CARDS
+
 .announcement-cards{
+    margin: 15px;
     .wrapper{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         max-width: 1100px;
         margin: 0 auto;
+    }
+    h1{
+        width: 100%;
+        text-align: center;
     }
     .announcement-card{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        flex-wrap: wrap;
         height: fit-content;
         position: relative;
         margin-top: 15px;
         padding: 10px;
-        flex-basis: 30%;
+        width: 300px;
         text-align: center;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         &__delete{
@@ -94,6 +124,8 @@
             top: 5px;
             left: 5px;
             width: 25px;
+            z-index: 10;
+            cursor: pointer;
         }
         &__title,&__title-form{
             border-bottom: 1px solid #000;
@@ -116,6 +148,7 @@
                 top: 5px;
                 right: 10px;
                 height: 15px;
+                cursor: pointer;
             }
         }
         &__description-form,&__title-form{
@@ -169,7 +202,107 @@
     }
 }
 
+//ANNOUNCEMENT
+
 .announcement{
+    .wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+    &__inner{
+        width: 500px;
+        margin-bottom: 30px;
+        h1{
+            text-align: center;
+        }
+        span{
+            width: 100%;
+            color: grey;
+        }
+    }
+}
+
+// SIMILAR ANNOUNCEMENTS SLIDER
+
+.slick-slider{
+    width: 350px !important;
+    height: 400px !important;
+    margin: 0 auto !important;
+    margin-top: 10px !important;
+    .slider-card{
+        height: fit-content;
+        position: relative;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 10px;
+        width: 300px !important;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 5px;
+            width: 100px;
+            text-align: center;
+            padding: 5px;
+        }
+    }
+}
+
+.slick-slide{
     text-align: center;
 }
 
+// PAGINATION
+.pagination{
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+    li{
+        display: inline;
+        color: #F57E5A;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: 'FiraSans-Regular';
+        margin: 10px;
+        border: 1px solid #F57E5A;
+        border-radius: 1px;
+        padding: 5px 10px 5px 10px;
+        a{
+            text-decoration: none;
+            color: #F57E5A;
+        }
+    }
+}
+
+.active{
+    color: #fff;
+    background: #F57E5A;
+}
+
+.activelink{
+    color: #fff !important;
+}
+
+@media screen and(max-width : 570px){
+    .header{
+        li{
+            text-align: center;
+        }
+        .search-form{
+            input[type=submit]{
+                margin-top: 10px;
+            }
+        }
+    }    
+    .announcement{
+        &__inner{
+            width: 300px;
+        }
+    }
+}

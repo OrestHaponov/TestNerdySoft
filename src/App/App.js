@@ -1,8 +1,8 @@
 import React from "react";
 import "./app.scss";
 import "../Components/styles.scss";
-import Routes from "../Routes";
 import Header from "../Components/Header/Header"
+import Routes from "../Routes";
 
 class App extends React.Component {
     constructor(props){

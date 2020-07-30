@@ -1,9 +1,9 @@
 import React from 'react';
-import {useSelector,useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import SimilarAnnouncements from './SimilarAnnouncements/SimilarAnnouncements';
 
 export default function Announcement(props){
-    const dispatch = useDispatch();
+    const announcementsH = useSelector(state => state.Announcements.announcements);
     let arrAnnouncement = [props.announcement]
     return(
         <div className="announcement">
@@ -19,6 +19,7 @@ export default function Announcement(props){
                         )
                     })}
                     <SimilarAnnouncements 
+                        announcements={announcementsH}
                         announcement={props.announcement}
                     />
                 </React.Fragment>

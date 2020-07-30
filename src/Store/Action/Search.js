@@ -1,4 +1,4 @@
-import {CHANGE_SEARCH_VALUE,SEARCH_RESULT,CLEAR_SEARCH_VALUE} from "./ActionTypes";
+import {CHANGE_SEARCH_VALUE,SEARCH_RESULT,CLEAR_SEARCH_VALUE,GET_SEARCH_VALUE} from "./ActionTypes";
 
 //GET CONTROL INPUT
     export function changeSearchValue(searchValue){
@@ -21,8 +21,9 @@ import {CHANGE_SEARCH_VALUE,SEARCH_RESULT,CLEAR_SEARCH_VALUE} from "./ActionType
                     }
                 );
                 dispatch(searchResult(newAnnouncements));
+                dispatch(getSearchValue(searchValue));
                 dispatch(clearSearchValue());
-                window.location.href = "/searchResults";
+                window.location.href = "/#/searchResults";
             }
         }
     }
@@ -37,5 +38,12 @@ import {CHANGE_SEARCH_VALUE,SEARCH_RESULT,CLEAR_SEARCH_VALUE} from "./ActionType
     export function clearSearchValue(){
         return{
             type: CLEAR_SEARCH_VALUE,
+        }
+    }
+
+    export function getSearchValue(searchValue){
+        return{
+            type: GET_SEARCH_VALUE,
+            searchValue
         }
     }

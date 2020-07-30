@@ -1,4 +1,4 @@
-import {REFRESH_ANNOUNCEMENTS,SHOW_EDIT_TITLE_FORM,HIDE_EDIT_TITLE_FORM,SHOW_EDIT_TEXT_FORM,HIDE_EDIT_TEXT_FORM} from "./ActionTypes";
+import {REFRESH_ANNOUNCEMENTS,SHOW_EDIT_TITLE_FORM,HIDE_EDIT_TITLE_FORM,SHOW_EDIT_TEXT_FORM,HIDE_EDIT_TEXT_FORM,START_CHANGE_PAGE,END_CHANGE_PAGE} from "./ActionTypes";
 
 export function reFresh(announcements){
     return{
@@ -72,5 +72,17 @@ export function reFresh(announcements){
                         dispatch(hideEditTextForm());
                     }))
                 }
+            }
+        }
+
+    //PAGINATION
+        export function startChangePage(){
+            return{
+                type: START_CHANGE_PAGE
+            }
+        }
+        export function endChangePage(){
+            return{
+                type: END_CHANGE_PAGE
             }
         }

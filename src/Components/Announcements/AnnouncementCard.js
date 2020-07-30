@@ -11,16 +11,18 @@ import Delete from '../../images/close.png';
 export default function AnnouncementCard(props){
     const dispatch = useDispatch();
     const deleteAnnouncementH = (announcement,announcements) => dispatch(deleteAnnouncement(announcement,announcements));
-    const announcementsH = useSelector(state => state.Announcements.announcements);
     const showEditTitleFormH = () => dispatch(showEditTitleForm());
     const hideEditTitleFormH = () => dispatch(hideEditTitleForm());
     const showEditTextFormH = () => dispatch(showEditTextForm()); 
     const hideEditTextFormH = () => dispatch(hideEditTextForm()); 
+    const announcementsH = useSelector(state => state.Announcements.announcements);
     const hideEditTitleH = useSelector(state => state.AnnouncementActions.hideEditTitle);
     const hideEditDescriptionH = useSelector(state => state.AnnouncementActions.hideEditDescription);
+    const [isSearchResultPage, setIsSearchResultPage] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
     const [editDescription, setEditDescription] = useState(false);
         useEffect(() => {
+            checkResultPage();
             if(hideEditTitleH === true){ 
                 hideEditTitleFormH();
                 setEditTitle(false);
@@ -40,17 +42,26 @@ export default function AnnouncementCard(props){
             showEditTextFormH();
             setEditDescription(true);
         }
-
+        
+        function checkResultPage(){
+            if(document.location.hash == "#/searchResults"){
+                setIsSearchResultPage(true);
+            }
+        }
     return(
         <React.Fragment>
             {props.announcement.map((announcement,index)=>{
                 return(
                     <div className="announcement-card" key={index}>
-                    <img className="announcement-card__delete" src={Delete} onClick={()=>deleteAnnouncementH(announcement,announcementsH)} />
+                    {isSearchResultPage === true ? null :
+                        <img className="announcement-card__delete" src={Delete} onClick={()=>deleteAnnouncementH(announcement,announcementsH)} />
+                    }
                     {editTitle === false ?
                         <div className="announcement-card__title">
                             <h1>{announcement.title}</h1>
-                            <img src={Edit} onClick={() => showFormEditTitle()} alt=""/>
+                            {isSearchResultPage === true ? null :
+                                <img src={Edit} onClick={() => showFormEditTitle()} alt=""/>
+                            }
                         </div>  
                         :
                         <EditTitle 
@@ -61,7 +72,9 @@ export default function AnnouncementCard(props){
                     {editDescription === false ?
                         <div className="announcement-card__description">
                             <p>{announcement.description}</p>
-                            <img src={Edit} alt="" onClick={() => showFormEditDescription()}/>
+                            {isSearchResultPage === true ? null :
+                                <img src={Edit} alt="" onClick={() => showFormEditDescription()}/>
+                            }
                         </div>  
                         :
                         <EditDescription 
@@ -76,7 +89,7 @@ export default function AnnouncementCard(props){
                                 announcement
                             }
                         }}>
-                                        Read more
+                            Read more
                         </Link>
                     </div>
                 </div>

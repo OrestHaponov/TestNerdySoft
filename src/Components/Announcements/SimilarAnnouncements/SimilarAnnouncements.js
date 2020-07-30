@@ -1,59 +1,91 @@
-import React from 'react';
-import AnnouncementCard from "../AnnouncementCard";
-import {useSelector} from "react-redux";
+import React from "react";
 import Slider from "react-slick";
+import {Link} from "react-router-dom";
 import "./_slick.scss";
 import "./_slickTheme.scss";
 
-export default function SimilarAnnouncements(props){
-    const announcementsH = useSelector(state => state.Announcements.announcements);
-  
-    function findSimilarAnnouncements(announcements, targetAnnouncement){
-        const targetTitleWords = targetAnnouncement.title.split(' ');
-        const targetDescriptionWords = targetAnnouncement.description.split(' ');
-        
-        return announcements.filter(({ title, description }) => {
-          const titleWords = title.split(' ');
-          const descriptionWords = description.split(' ');
-      
-          const isTitleSimilar = targetTitleWords
+class SimilarAnnouncements extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            similar: [],
+        }
+    }
+
+    componentDidMount(){
+        this.getSimilar(this.props.announcements,this.props.announcement);
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props.announcement !== prevProps.announcement) {
+            this.getSimilar(this.props.announcements,this.props.announcement);
+        }
+    }
+    
+    getSimilar=(announcements, announcement)=>{
+        let announcementTitleWords = announcement.title.split(' ');
+        let announcementDescriptionWords = announcement.description.split(' ');
+
+        let similar = announcements.filter(({ title, description }) => {
+            let titleWords = title.split(' ');
+            let descriptionWords = description.split(' ');
+            let isTitleSimilar = announcementTitleWords
             .some(word => titleWords.includes(word));
-          const isDescriptionSimilar = targetDescriptionWords
+            let isDescriptionSimilar = announcementDescriptionWords
             .some(word => descriptionWords.includes(word));
-      
-            console.log(isTitleSimilar )
-          return isTitleSimilar && isDescriptionSimilar;
+            return isTitleSimilar && isDescriptionSimilar;
         });
-      };
-      
+        similar = similar.filter(article => article.id != announcement.id);
+        this.setState({
+            similar: similar
+        })
+      }
+
+    render() {  
         const settings = {
             dots: false,
-            infinite: false,
+            infinite: true,
             speed: 700,
             slidesToShow: 1,
             slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000
         };
-    return(
-        <div className="announcement-cards">
-            <button onClick={()=>findSimilarAnnouncements(announcementsH,props.announcement)}>Push</button>
-            {/* <div className="wrapper">
-                {announcementsH.length === 0 ?
-                    <h1>No announcements yet</h1>
-                    :
-                    <AnnouncementCard 
-                        announcements={announcementsH}
-                    />
+        return (
+            <React.Fragment>
+                {this.state.similar.length === 0 ? null :
+                    <React.Fragment>
+                        <h1>Similar announcements</h1>
+                        <Slider {...settings}>
+                            {this.state.similar.map((announcement,index)=>{
+                                return(
+                                    <div className="slider-card" key={index}>
+                                        <div className="slider-card__title">
+                                            <h1>{announcement.title}</h1>
+                                        </div>  
+                                        <div className="slider-card__description">
+                                            <p>{announcement.description}</p>
+                                        </div> 
+                                    <div className="slider-card__more">
+                                        <Link to={{
+                                            pathname: `/${announcement.title}`,
+                                            state:{
+                                                announcement
+                                            }
+                                        }}>
+                                            Read more
+                                        </Link>
+                                    </div>
+                                </div>
+                                )
+                            })}
+                        </Slider> 
+                    </React.Fragment>
                 }
-            </div> */}
-            {/* <Slider {...settings}>
-                {announcementsH.map((value,index)=>{
-                    return(
-                        <div className="test">
-                            <h1>{value.title}</h1>
-                        </div>
-                    )
-                })}
-            </Slider> */}
-        </div>
-    )
+            </React.Fragment>
+        );
+    }
 }
+
+
+export default SimilarAnnouncements;

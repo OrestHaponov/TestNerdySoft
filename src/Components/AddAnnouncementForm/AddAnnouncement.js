@@ -10,24 +10,19 @@ export default function AddAnnouncement(){
     const removeTitleErrorBorderH = () => dispatch(removeTitleErrorBorder());
     const removeDescriptionErrorBorderH = () => dispatch(removeDescriptionErrorBorder());
     const announcementsH = useSelector(state => state.Announcements.announcements);
-    const openFormH = useSelector(state => state.AddAnnouncement.openForm);
     const valueTitleH = useSelector(state => state.AddAnnouncement.valueTitle);
     const valueDescriptionH = useSelector(state => state.AddAnnouncement.valueDescription);
     const descriptionErrorH = useSelector(state => state.AddAnnouncement.descriptionError);
     const titleErrorH = useSelector(state => state.AddAnnouncement.titleError);
     return(
-        <React.Fragment>
-            {openFormH === true ?
-                <div className="add">
-                    <div className="wrapper">
-                        <form  className="add__form" onSubmit={()=>addAnnouncementH(valueTitleH,valueDescriptionH,announcementsH)}>
-                            <input type="text" className={titleErrorH === true ? "error" : null} value={valueTitleH}  onChange={changeTitleH} onInput={removeTitleErrorBorderH} placeholder="Title"/>
-                            <textarea  className={descriptionErrorH === true ? "error" : null} value={valueDescriptionH}  onChange={changeDescriptionH} onInput={removeDescriptionErrorBorderH} placeholder="Announcement"/>
-                            <input type="submit" value="Add" className="add__form-button"/>
-                        </form>
-                    </div>
-                </div>
-            : null}
-        </React.Fragment>
+        <div className="add">
+            <div className="wrapper">
+                <form  className="add__form" onSubmit={()=>addAnnouncementH(valueTitleH,valueDescriptionH,announcementsH)}>
+                    <input type="text" className={titleErrorH === true ? "error" : null} value={valueTitleH}  onChange={changeTitleH} onInput={removeTitleErrorBorderH} placeholder="Title"/>
+                    <textarea  className={descriptionErrorH === true ? "error" : null} value={valueDescriptionH}  onChange={changeDescriptionH} onInput={removeDescriptionErrorBorderH} placeholder="Announcement"/>
+                    <input type="submit" value="Add" className="add__form-button"/>
+                </form>
+            </div>
+        </div>
     )
 }
